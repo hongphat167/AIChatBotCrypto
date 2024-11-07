@@ -50,7 +50,7 @@ const Chatbot = () => {
                 {response.map((item, index) => (
                     item.type === 'bot' ? (
                         <div className="message-bot" key={index}>
-                            <img src="https://cdn.pixabay.com/photo/2023/05/29/18/53/cyborg-8026949_640.jpg" alt="Bot" className="message-avatar" />
+                            <img src="https://cdn-icons-png.freepik.com/256/2814/2814666.png?ga=GA1.1.109364194.1730991071&semt=ais_hybrid" alt="Bot" className="message-avatar" />
                             <PromptMessage message={item.message} />
                         </div>
                     ) : (
@@ -95,7 +95,7 @@ const Chatbot = () => {
                     placeholder="Type Message"
                 />
                 <button className="send-button" onClick={handleSendMessage}>
-                    <img src="https://cdn.pixabay.com/photo/2023/05/29/18/53/cyborg-8026949_640.jpg" alt="Send" />
+                    <img src="https://cdn-icons-png.freepik.com/256/11121/11121740.png?ga=GA1.1.109364194.1730991071&semt=ais_hybrid" alt="Send" />
                 </button>
             </div>
         </div>
