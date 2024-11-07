@@ -8,6 +8,7 @@ const Chatbot = () => {
     const [loading, setLoading] = useState(false);
     const [showWelcome, setShowWelcome] = useState(true);
     const [error, setError] = useState(false);
+    const [inputValue, setInputValue] = useState('');
 
     const handleFetchCoinDetails = async (prompt) => {
         setLoading(true);
@@ -22,6 +23,17 @@ const Chatbot = () => {
             }
         }
         setLoading(false);
+    };
+
+    const handleSendMessage = () => {
+        if (inputValue.trim()) {
+            const userMessage = { message: inputValue.trim(), type: 'user' };
+            setResponse(prev => [...prev, userMessage]);
+            handleFetchCoinDetails(inputValue.trim());
+            setShowWelcome(false);
+            setError(false);
+            setInputValue('');
+        }
     };
 
     return (
@@ -71,21 +83,18 @@ const Chatbot = () => {
             {/* Input Section */}
             <div className="chatbox-input-section">
                 <input
+                    value={inputValue}
+                    onChange={(e) => setInputValue(e.target.value)}
                     onKeyPress={(e) => {
-                        if (e.key === "Enter" && e.target.value.trim()) {
-                            const userMessage = { message: e.target.value, type: 'user' };
-                            setResponse(prev => [...prev, userMessage]);
-                            handleFetchCoinDetails(e.target.value.trim());
-                            setShowWelcome(false);
-                            setError(false);
-                            e.target.value = '';
+                        if (e.key === "Enter") {
+                            handleSendMessage();
                         }
                     }}
                     type="text"
                     className="chatbox-input"
                     placeholder="Type Message"
                 />
-                <button className="send-button">
+                <button className="send-button" onClick={handleSendMessage}>
                     <img src="https://cdn.pixabay.com/photo/2023/05/29/18/53/cyborg-8026949_640.jpg" alt="Send" />
                 </button>
             </div>
